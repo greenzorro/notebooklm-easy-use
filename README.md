@@ -20,6 +20,8 @@ NotebookLM 和 Google Docs/Sheets/Slides 配合使用有奇效，因为这些文
 
 ![](https://github.com/user-attachments/assets/8b37ea37-37a5-46a9-b53b-98fd0b00fe27)
 
+Video below:
+
 https://github.com/user-attachments/assets/782674f3-912f-42a4-bf28-0d53dccf66ce
 
 ---
