@@ -2,7 +2,7 @@
 
 [📃 Tampermonkey Script](https://greasyfork.org/en/scripts/561819-notebooklm-easy-use)
 
-[🌐 Chrome Web Store](https://chrome.google.com/webstore/detail/ihlfmnkaohiafbaoaiebjnjnnkelbali) | [🌐 Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/ekbgfclmofkkigkhnfamnlcbniladoek) | [🗄️ Download ZIP](https://github.com/greenzorro/notebooklm-easy-use/raw/main/notebooklm-easy-use.zip)
+[🌐 Chrome Web Store](https://chrome.google.com/webstore/detail/ihlfmnkaohiafbaoaiebjnjnnkelbali) | [🗄️ Download ZIP](https://github.com/greenzorro/notebooklm-easy-use/raw/main/notebooklm-easy-use.zip)
 
 *Extension automatically created with [browser-script-to-extension](https://github.com/greenzorro/browser-script-to-extension)*
 
