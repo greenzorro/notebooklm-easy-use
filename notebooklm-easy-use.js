@@ -39,7 +39,7 @@
         SOURCE_CONTAINER: '.single-source-container',
         SOURCE_ICON: 'mat-icon.source-item-source-icon',
         SOURCE_TITLE: '.source-title-column',
-        SOURCE_NAVIGATION_BUTTON: '.source-stretched-button',  // 添加这一行
+        SOURCE_NAVIGATION_BUTTON: '.source-stretched-button',
         DETAIL_CONTAINER: '.source-panel',
         SYNC_BUTTON: '.source-refresh',
         SYNC_SUCCESS: '.source-refresh--success',
@@ -187,12 +187,12 @@
             const container = allContainers[originalIndex];
             const titleElement = container.querySelector(SELECTORS.SOURCE_TITLE);
             const buttonElement = container.querySelector(SELECTORS.SOURCE_NAVIGATION_BUTTON);
-            return { container, titleElement, buttonElement };  // 更新返回值
+            return { container, titleElement, buttonElement };
         }
         return null;
     }
 
-    async function openSourceDetail(container, titleElement, buttonElement, sourceTitle) {  // 添加 buttonElement 参数
+    async function openSourceDetail(container, titleElement, buttonElement, sourceTitle) {
         highlightElement(container, CONFIG.HIGHLIGHT_DURATION);
 
         await wait(CONFIG.HIGHLIGHT_DURATION);
@@ -200,7 +200,7 @@
         const panelBefore = document.querySelector(SELECTORS.DETAIL_CONTAINER);
         const panelClassBefore = panelBefore ? panelBefore.className : 'no panel';
 
-        clickElement(buttonElement);  // 点击 buttonElement 而不是 titleElement
+        clickElement(buttonElement);
 
         await wait(CONFIG.PAGE_LOAD_DELAY);
 
@@ -266,8 +266,8 @@
                 return SYNC_RESULT.FAILED;
             }
 
-            const { container, titleElement, buttonElement } = found;  // 更新解构赋值
-            const detailPanel = await openSourceDetail(container, titleElement, buttonElement, source.title);  // 传递 buttonElement
+            const { container, titleElement, buttonElement } = found;
+            const detailPanel = await openSourceDetail(container, titleElement, buttonElement, source.title);
 
             if (!detailPanel) {
                 return SYNC_RESULT.SKIPPED;

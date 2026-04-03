@@ -29,6 +29,7 @@
         SOURCE_CONTAINER: '.single-source-container',
         SOURCE_ICON: 'mat-icon.source-item-source-icon',
         SOURCE_TITLE: '.source-title-column',
+        SOURCE_NAVIGATION_BUTTON: '.source-stretched-button',
         DETAIL_CONTAINER: '.source-panel',
         SYNC_BUTTON: '.source-refresh',
         SYNC_SUCCESS: '.source-refresh--success',
@@ -175,12 +176,13 @@
         if (originalIndex < allContainers.length) {
             const container = allContainers[originalIndex];
             const titleElement = container.querySelector(SELECTORS.SOURCE_TITLE);
-            return { container, titleElement };
+            const buttonElement = container.querySelector(SELECTORS.SOURCE_NAVIGATION_BUTTON);
+            return { container, titleElement, buttonElement };
         }
         return null;
     }
 
-    async function openSourceDetail(container, titleElement, sourceTitle) {
+    async function openSourceDetail(container, titleElement, buttonElement, sourceTitle) {
         highlightElement(container, CONFIG.HIGHLIGHT_DURATION);
 
         await wait(CONFIG.HIGHLIGHT_DURATION);
@@ -188,7 +190,7 @@
         const panelBefore = document.querySelector(SELECTORS.DETAIL_CONTAINER);
         const panelClassBefore = panelBefore ? panelBefore.className : 'no panel';
 
-        clickElement(titleElement);
+        clickElement(buttonElement);
 
         await wait(CONFIG.PAGE_LOAD_DELAY);
 
@@ -254,8 +256,8 @@
                 return SYNC_RESULT.FAILED;
             }
 
-            const { container, titleElement } = found;
-            const detailPanel = await openSourceDetail(container, titleElement, source.title);
+            const { container, titleElement, buttonElement } = found;
+            const detailPanel = await openSourceDetail(container, titleElement, buttonElement, source.title);
 
             if (!detailPanel) {
                 return SYNC_RESULT.SKIPPED;

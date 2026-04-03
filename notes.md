@@ -94,6 +94,7 @@ const SELECTORS = {
     SOURCE_CONTAINER: '.single-source-container',
     SOURCE_ICON: 'mat-icon.source-item-source-icon',
     SOURCE_TITLE: '.source-title-column',
+    SOURCE_NAVIGATION_BUTTON: '.source-stretched-button',
     DETAIL_CONTAINER: '.source-panel',
     SYNC_BUTTON: '.source-refresh',
     SYNC_SUCCESS: '.source-refresh--success',
@@ -148,7 +149,7 @@ const SYNC_RESULT = {
 | 函数 | 职责 |
 |---|---|
 | `findSourceByIndex(index)` | 通过列表索引定位 DOM 元素 |
-| `openSourceDetail(container, titleElement, sourceTitle)` | 打开资料详情页并验证导航成功 |
+| `openSourceDetail(container, titleElement, buttonElement, sourceTitle)` | 打开资料详情页并验证导航成功 |
 | `waitForSyncButton(detailPanel)` | 轮询检测同步按钮是否出现 |
 | `clickSyncButton(detailPanel)` | 点击同步按钮并验证成功状态 |
 
@@ -237,7 +238,8 @@ function findSourceByIndex(originalIndex) {
     // 通过索引定位对应的 DOM 元素
     return {
         container: allContainers[originalIndex],
-        titleElement: allContainers[originalIndex].querySelector(SELECTORS.SOURCE_TITLE)
+        titleElement: allContainers[originalIndex].querySelector(SELECTORS.SOURCE_TITLE),
+        buttonElement: allContainers[originalIndex].querySelector(SELECTORS.SOURCE_NAVIGATION_BUTTON)
     };
 }
 ```
@@ -251,7 +253,7 @@ function findSourceByIndex(originalIndex) {
 
 **关键发现**: 点击整个资料卡片 (`.single-source-container`) 无法触发导航。
 
-**正确做法**: 必须点击标题元素 (`.source-title-column`)
+**正确做法**: 必须点击导航按钮 (`.source-stretched-button`)，而非标题元素 (`.source-title-column`)
 
 ### 4.3 增强点击模拟
 
@@ -425,7 +427,7 @@ async function syncSource(source) {
 ```javascript
 // syncSource 作为编排层，调用各子函数完成流程
 async function syncSource(source) {
-    const detailPanel = await openSourceDetail(source.container, source.titleElement, source.title);
+    const detailPanel = await openSourceDetail(source.container, source.titleElement, source.buttonElement, source.title);
 
     if (!detailPanel) return SYNC_RESULT.SKIPPED;
 
