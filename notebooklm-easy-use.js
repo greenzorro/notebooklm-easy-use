@@ -10,7 +10,7 @@
 // ==UserScript==
 // @name         NotebookLM easy use
 // @namespace    http://tampermonkey.net/
-// @version      1.0.2
+// @version      1.0.3
 // @description  Batch update Google Drive sources in NotebookLM
 // @author       Victor Cheng
 // @match        https://notebooklm.google.com/notebook/*
