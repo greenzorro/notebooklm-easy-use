@@ -10,7 +10,7 @@
 // ==UserScript==
 // @name         NotebookLM easy use
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Batch update Google Drive sources in NotebookLM
 // @author       Victor Cheng
 // @match        https://notebooklm.google.com/notebook/*
@@ -36,13 +36,14 @@
     };
 
     const SELECTORS = {
-        SOURCE_CONTAINER: '.single-source-container',
+        SOURCE_CONTAINER: 'div[draggable="true"].single-source-container',
         SOURCE_ICON: 'mat-icon.source-item-source-icon',
-        SOURCE_TITLE: '.source-title-column',
-        DETAIL_CONTAINER: '.source-panel',
+        SOURCE_STRETCHED_BUTTON: 'button.source-stretched-button',
+        SOURCE_TITLE: '.source-title-column .source-title span',
+        DETAIL_CONTAINER: '.source-panel-content',
         SYNC_BUTTON: '.source-refresh',
         SYNC_SUCCESS: '.source-refresh--success',
-        BACK_BUTTON: '.source-panel .panel-header button',
+        BACK_BUTTON: 'button[aria-label="Back"]',
     };
 
     const GOOGLE_DRIVE_ICONS = ['article', 'drive_spreadsheet', 'drive_presentation'];
@@ -185,7 +186,8 @@
         if (originalIndex < allContainers.length) {
             const container = allContainers[originalIndex];
             const titleElement = container.querySelector(SELECTORS.SOURCE_TITLE);
-            return { container, titleElement };
+            const stretchedButton = container.querySelector(SELECTORS.SOURCE_STRETCHED_BUTTON);
+            return { container, titleElement, stretchedButton };
         }
         return null;
     }
@@ -198,7 +200,14 @@
         const panelBefore = document.querySelector(SELECTORS.DETAIL_CONTAINER);
         const panelClassBefore = panelBefore ? panelBefore.className : 'no panel';
 
-        clickElement(titleElement);
+        // Find and click the stretched button instead of the title element
+        const stretchedButton = container.querySelector(SELECTORS.SOURCE_STRETCHED_BUTTON);
+        if (!stretchedButton) {
+            logWarn('Stretched button not found for: ' + sourceTitle);
+            return null;
+        }
+
+        clickElement(stretchedButton);
 
         await wait(CONFIG.PAGE_LOAD_DELAY);
 
@@ -264,7 +273,7 @@
                 return SYNC_RESULT.FAILED;
             }
 
-            const { container, titleElement } = found;
+            const { container, titleElement, stretchedButton } = found;
             const detailPanel = await openSourceDetail(container, titleElement, source.title);
 
             if (!detailPanel) {
