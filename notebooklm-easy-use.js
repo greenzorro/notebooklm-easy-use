@@ -36,14 +36,14 @@
     };
 
     const SELECTORS = {
-        SOURCE_CONTAINER: 'div[draggable="true"].single-source-container',
+        SOURCE_CONTAINER: '.single-source-container',
         SOURCE_ICON: 'mat-icon.source-item-source-icon',
-        SOURCE_STRETCHED_BUTTON: 'button.source-stretched-button',
-        SOURCE_TITLE: '.source-title-column .source-title span',
-        DETAIL_CONTAINER: '.source-panel-content',
+        SOURCE_TITLE: '.source-title-column',
+        SOURCE_NAVIGATION_BUTTON: '.source-stretched-button',  // 添加这一行
+        DETAIL_CONTAINER: '.source-panel',
         SYNC_BUTTON: '.source-refresh',
         SYNC_SUCCESS: '.source-refresh--success',
-        BACK_BUTTON: 'button[aria-label="Back"]',
+        BACK_BUTTON: '.source-panel .panel-header button',
     };
 
     const GOOGLE_DRIVE_ICONS = ['article', 'drive_spreadsheet', 'drive_presentation'];
@@ -186,13 +186,13 @@
         if (originalIndex < allContainers.length) {
             const container = allContainers[originalIndex];
             const titleElement = container.querySelector(SELECTORS.SOURCE_TITLE);
-            const stretchedButton = container.querySelector(SELECTORS.SOURCE_STRETCHED_BUTTON);
-            return { container, titleElement, stretchedButton };
+            const buttonElement = container.querySelector(SELECTORS.SOURCE_NAVIGATION_BUTTON);
+            return { container, titleElement, buttonElement };  // 更新返回值
         }
         return null;
     }
 
-    async function openSourceDetail(container, titleElement, sourceTitle) {
+    async function openSourceDetail(container, titleElement, buttonElement, sourceTitle) {  // 添加 buttonElement 参数
         highlightElement(container, CONFIG.HIGHLIGHT_DURATION);
 
         await wait(CONFIG.HIGHLIGHT_DURATION);
@@ -200,14 +200,7 @@
         const panelBefore = document.querySelector(SELECTORS.DETAIL_CONTAINER);
         const panelClassBefore = panelBefore ? panelBefore.className : 'no panel';
 
-        // Find and click the stretched button instead of the title element
-        const stretchedButton = container.querySelector(SELECTORS.SOURCE_STRETCHED_BUTTON);
-        if (!stretchedButton) {
-            logWarn('Stretched button not found for: ' + sourceTitle);
-            return null;
-        }
-
-        clickElement(stretchedButton);
+        clickElement(buttonElement);  // 点击 buttonElement 而不是 titleElement
 
         await wait(CONFIG.PAGE_LOAD_DELAY);
 
@@ -273,8 +266,8 @@
                 return SYNC_RESULT.FAILED;
             }
 
-            const { container, titleElement, stretchedButton } = found;
-            const detailPanel = await openSourceDetail(container, titleElement, source.title);
+            const { container, titleElement, buttonElement } = found;  // 更新解构赋值
+            const detailPanel = await openSourceDetail(container, titleElement, buttonElement, source.title);  // 传递 buttonElement
 
             if (!detailPanel) {
                 return SYNC_RESULT.SKIPPED;
