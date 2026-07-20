@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "NotebookLM easy use",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Batch update Google Drive sources in NotebookLM",
   "content_scripts": [
     {
