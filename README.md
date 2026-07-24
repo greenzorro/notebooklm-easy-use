@@ -31,3 +31,36 @@ https://github.com/user-attachments/assets/782674f3-912f-42a4-bf28-0d53dccf66ce
 ---
 
 Created by [Victor42](https://victor42.work/) & [Agent Vik](https://github.com/agent-vik)
+
+# For Agent
+
+Install this browser enhancement, verify it on NotebookLM, run one batch Drive-source update if the notebook has Google Workspace sources, then hand routine syncing to the human.
+
+This tool runs in the browser. You need a browser tool plus a logged-in Google session for real use.
+
+## Prerequisites
+
+- Chromium-based browser + Tampermonkey or unpacked extension from this repo
+- `https://notebooklm.google.com/notebook/*` with at least one Docs/Sheets/Slides source when testing the main flow
+
+## Steps
+
+1. Install:
+   - Tampermonkey: root `notebooklm-easy-use.js` (or GreasyFork), **or**
+   - Load `notebooklm-easy-use.zip` / unpacked `extension/` via `chrome://extensions`
+2. **One handoff:** human approves install + Google login if needed.
+3. Open a notebook URL matching `@match`. Confirm the script UI / batch-update control is present.
+4. Trigger the one-click update for Google Workspace sources; wait until sources show as refreshed (or equivalent success signal in the UI).
+5. Stop. Recurring “update all sources” clicks are the human’s habit loop.
+
+## Hand off to the human
+
+- Choosing which notebooks matter
+- Google login and NotebookLM access permissions
+
+## Red lines
+
+- No credential harvesting
+- Stay on NotebookLM notebook URLs (`@match` above)
+- Selector drift → `notes.md`; no drive-by full rewrite of the userscript unless asked
+- Do not republish the extension unless asked
