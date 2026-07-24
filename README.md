@@ -1,30 +1,18 @@
 # notebooklm-easy-use
 
-[📃 Tampermonkey Script](https://greasyfork.org/en/scripts/561819-notebooklm-easy-use)
+*Chrome extension builds of this script are produced with [browser-script-to-extension](https://github.com/greenzorro/browser-script-to-extension).*
 
-[🌐 Chrome Web Store](https://chrome.google.com/webstore/detail/ihlfmnkaohiafbaoaiebjnjnnkelbali) | [🗄️ Download ZIP](https://github.com/greenzorro/notebooklm-easy-use/raw/main/notebooklm-easy-use.zip)
-
-*Extension automatically created with [browser-script-to-extension](https://github.com/greenzorro/browser-script-to-extension)*
+Ask an agent to install it (see `# For Agent`). Then open NotebookLM and use the one-click update when Drive sources go stale.
 
 **Batch Update Google Drive Sources in NotebookLM**
 
-Combining NotebookLM with Google Docs, Sheets, and Slides is a game-changer, as it allows the tool to function as a natural language interface for databases in long-term projects. 
+Combining NotebookLM with Google Docs, Sheets, and Slides is powerful for long-lived projects—but NotebookLM snapshots sources when added, and there is no built-in “Update All”. This script finds Workspace sources and updates them in one click.
 
-The catch is that NotebookLM captures a static snapshot of your files when they are first added. Syncing updates requires a manual process, and since there is no "Update All" feature, you’re forced to click into each source's settings individually—a massive time sink.
+**NotebookLM 快捷更新 Google Drive 资料**
 
-This script automates that workflow. It scans your source list for all Google Workspace files and triggers an update for each one, handling the entire process in a single click.
-
-**NotebookLM 快捷更新Google Drive资料内容**
-
-NotebookLM 和 Google Docs/Sheets/Slides 配合使用有奇效，因为这些文档的更新，可以反映到 NotebookLM 中。这使得 NotebookLM 可以被当做自然语言的数据库检索工具，用于需要持续更新数据的长期项目。
-
-但是 NotebookLM 实际上会在添加资料时把当时的内容固化下来。资料的更新，在 NotebookLM 这边不手动操作无法同步过来。NotebookLM 的界面上没有全部更新的功能，更新按钮在资料的详情里，一个个点进去非常耗费精力。
-
-于是有了这个脚本，从资料列表中找出所有 Docs/Sheets/Slides 资料，逐个进入详情更新。全程一键搞定。
+Docs/Sheets/Slides 很适合当长期资料库，但 NotebookLM 添加时会固化快照，界面又没有「全部更新」。本脚本从列表找出这些资料并逐个点更新，一键搞定。
 
 ![](https://github.com/user-attachments/assets/8b37ea37-37a5-46a9-b53b-98fd0b00fe27)
-
-Video below:
 
 https://github.com/user-attachments/assets/782674f3-912f-42a4-bf28-0d53dccf66ce
 
@@ -46,7 +34,7 @@ This tool runs in the browser. You need a browser tool plus a logged-in Google s
 ## Steps
 
 1. Install:
-   - Tampermonkey: root `notebooklm-easy-use.js` (or GreasyFork), **or**
+   - Tampermonkey: root `notebooklm-easy-use.js` or https://greasyfork.org/en/scripts/561819-notebooklm-easy-use, **or**
    - Load `notebooklm-easy-use.zip` / unpacked `extension/` via `chrome://extensions`
 2. **One handoff:** human approves install + Google login if needed.
 3. Open a notebook URL matching `@match`. Confirm the script UI / batch-update control is present.
