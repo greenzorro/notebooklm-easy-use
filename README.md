@@ -20,6 +20,8 @@ https://github.com/user-attachments/assets/782674f3-912f-42a4-bf28-0d53dccf66ce
 
 Created by [Victor42](https://victor42.work/) & [Agent Vik](https://github.com/agent-vik)
 
+---
+
 # For Agent
 
 Install this browser enhancement, verify it on NotebookLM, run one batch Drive-source update if the notebook has Google Workspace sources, then hand routine syncing to the human.
