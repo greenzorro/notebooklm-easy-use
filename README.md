@@ -2,8 +2,6 @@
 
 *Chrome extension builds of this script are produced with [browser-script-to-extension](https://github.com/greenzorro/browser-script-to-extension).*
 
-Ask an agent to install it (see `# For Agent`). Then open NotebookLM and use the one-click update when Drive sources go stale.
-
 **Batch Update Google Drive Sources in NotebookLM**
 
 Combining NotebookLM with Google Docs, Sheets, and Slides is powerful for long-lived projects—but NotebookLM snapshots sources when added, and there is no built-in “Update All”. This script finds Workspace sources and updates them in one click.
