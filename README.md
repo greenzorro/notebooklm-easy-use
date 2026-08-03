@@ -33,7 +33,7 @@ This tool runs in the browser. You need a browser tool plus a logged-in Google s
 ## Prerequisites
 
 - Chromium-based browser + Tampermonkey or unpacked extension from this repo
-- `https://notebooklm.google.com/notebook/*` with at least one Docs/Sheets/Slides source when testing the main flow
+- `https://notebook.google.com/notebook/*` (legacy alias `https://notebooklm.google.com/notebook/*`) with at least one Docs/Sheets/Slides source when testing the main flow
 
 ## Steps
 

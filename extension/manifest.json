@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
   "name": "NotebookLM easy use",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Batch update Google Drive sources in NotebookLM",
   "content_scripts": [
     {
       "matches": [
+        "https://notebook.google.com/notebook/*",
         "https://notebooklm.google.com/notebook/*"
       ],
       "js": [
@@ -18,5 +19,6 @@
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  }
+  },
+  "author": "Victor Cheng"
 }
